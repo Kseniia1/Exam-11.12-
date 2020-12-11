@@ -1,0 +1,40 @@
+#include <iostream>
+#include <vector>
+
+class inf 
+{
+private:
+	int num, counter;
+	void quantity() 
+{
+		counter = 0;
+		int n = num + 1;
+		for (int i = 1; i < n; ++i)
+			if (num % i == 0)
+				++counter;
+	}
+public:
+	inf() : num(0), counter(0) {};
+	inf(int a) : num(a), counter(0) {
+		quantity();
+	}
+	void unput(int a) {
+		quantity();
+	}
+	int get_num() { return num; }
+	int get_quan() { return counter; }
+	void operator=(const inf& a) {
+		this->num = a.num;
+		this->counter = a.counter;
+	}
+};
+
+int main() {
+	inf max;
+	for (int i = 120115; i < 120201; ++i) {
+		inf a(i);
+		if (a.get_quantity() > max.get_quantity())
+			max = a;
+	}
+	std::cout << max.get_quantity() << ' ' << max.get_num();
+}
